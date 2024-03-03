@@ -5,21 +5,10 @@ from .models import About
 # Create your views here.
 
 
-def about_page(about):
-    """
-    Display an individual :model:`blog.Post`.
-
-    **Context**
-
-    ``post``
-        An instance of :model:`blog.Post`.
-
-    **Template:**
-
-    :template:`blog/post_detail.html`
-    """
-    queryset = About.objects.order_by('publiched_on').first()
-    about = get_object_or_404(queryset, about)
+def about_page(request):
+    # Hämta About-objektet baserat på id
+    about = About.objects.order_by('published_on').first()
+    
 
     return render(
         request,
