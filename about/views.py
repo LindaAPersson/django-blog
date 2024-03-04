@@ -8,8 +8,7 @@ def about_me(request):
     """
     Renders the About page
     """
-    about = About.objects.order_by('published_on').first()
-    collaborate_form = CollaborateForm()
+    
 
     if request.method == "POST":
         collaborate_form = CollaborateForm(data=request.POST)
@@ -19,7 +18,9 @@ def about_me(request):
                 request, messages.SUCCESS,
                 'Collaboration request received! I endeavour to respond within 2 working days'
             )
-
+            
+    about = About.objects.order_by('published_on').first()
+    collaborate_form = CollaborateForm()
 
     return render(
         request,
